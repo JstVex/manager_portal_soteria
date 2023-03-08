@@ -1,25 +1,24 @@
-import styles from "../styles/Donation.module.css"
+import styles from "../styles/Card.module.css"
 
-const Campaign = ({ campaign, setSelectedTitle, setSelectedImg, setSelectedStartDate, setSelectedEndDate, setSelectedText, setSelectedName, setSelectedTarget, setSelectedUrl, setSelectedPrize, setSelectedForwhom, setSelectedPayment, setSelectedId, setSelectedCampaign }) => {
+const Campaign = ({ campaign, setCampaignTitle, setCampaignImg, setCampaignStartDate, setCampaignEndDate, setCampaignText, setCampaignName, setCampaignTarget, setCampaignUrl, setCampaignPrize, setCampaignForwhom, setCampaignPayment, setCampaignId }) => {
 
-    const handleSelectedPost = () => {
-        setSelectedCampaign(campaign);
-        setSelectedTitle(campaign.title);
-        setSelectedImg(campaign.img);
-        setSelectedStartDate(campaign.startDate);
-        setSelectedEndDate(campaign.endDate);
-        setSelectedText(campaign.text);
-        setSelectedName(campaign.name);
-        setSelectedTarget(campaign.target);
-        setSelectedUrl(campaign.url);
-        setSelectedPrize(campaign.prize);
-        setSelectedForwhom(campaign.forWhom);
-        setSelectedPayment(campaign.payment);
-        setSelectedId(campaign._id)
+    const handleCampaignPost = () => {
+        setCampaignTitle(campaign.title);
+        setCampaignImg(campaign.img);
+        setCampaignStartDate(campaign.startDate);
+        setCampaignEndDate(campaign.endDate);
+        setCampaignText(campaign.text);
+        setCampaignName(campaign.name);
+        setCampaignTarget(campaign.target);
+        setCampaignUrl(campaign.url);
+        setCampaignPrize(campaign.prize);
+        setCampaignForwhom(campaign.forWhom);
+        setCampaignPayment(campaign.payment);
+        setCampaignId(campaign._id)
     }
 
     return (
-        <div className={styles.card} onClick={handleSelectedPost}>
+        <div className={styles.card} onClick={handleCampaignPost}>
             <p className={styles.title}>{campaign.title}</p>
             <img src={campaign.img} alt="" className={styles.img} />
             <p className={styles.text}>{campaign.text.slice(0, 100) + '...'}</p>

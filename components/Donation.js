@@ -1,25 +1,24 @@
-import styles from "../styles/Donation.module.css"
+import styles from "../styles/Card.module.css"
 
-const Donation = ({ donation, setSelectedTitle, setSelectedImg, setSelectedStartDate, setSelectedEndDate, setSelectedText, setSelectedName, setSelectedTarget, setSelectedUrl, setSelectedLocation, setSelectedPayment, setSelectedId, setSelectedDonation }) => {
+const Donation = ({ donation, setDonationTitle, setDonationImg, setDonationStartDate, setDonationEndDate, setDonationText, setDonationName, setDonationTarget, setDonationUrl, setDonationLocation, setDonationPayment, setDonationId }) => {
 
-    const handleSelectedPost = () => {
-        setSelectedDonation(donation);
-        setSelectedTitle(donation.title);
-        setSelectedImg(donation.img);
-        setSelectedStartDate(donation.startDate);
-        setSelectedEndDate(donation.endDate);
-        setSelectedText(donation.text);
-        setSelectedName(donation.name);
-        setSelectedTarget(donation.target);
-        setSelectedUrl(donation.url);
-        setSelectedLocation(donation.location);
-        setSelectedPayment(donation.payment);
-        setSelectedId(donation._id)
+    const handleDonationPost = () => {
+        setDonationTitle(donation.title);
+        setDonationImg(donation.img);
+        setDonationStartDate(donation.startDate);
+        setDonationEndDate(donation.endDate);
+        setDonationText(donation.text);
+        setDonationName(donation.name);
+        setDonationTarget(donation.target);
+        setDonationUrl(donation.url);
+        setDonationLocation(donation.location);
+        setDonationPayment(donation.payment);
+        setDonationId(donation._id)
     }
 
     return (
         // <a href={donation.url} target="_blank">
-        <div className={styles.card} onClick={handleSelectedPost}>
+        <div className={styles.card} onClick={handleDonationPost}>
             <p className={styles.title}>{donation.title}</p>
             <img src={donation.img} alt="" className={styles.img} />
             <p className={styles.text}>{donation.text.slice(0, 100) + '...'}</p>
