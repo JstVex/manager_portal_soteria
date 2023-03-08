@@ -1,14 +1,14 @@
 import styles from "../styles/Modal.module.css"
 import Payment from "./Payment"
 
-const Modal = ({ setSelectedLocation, selectedTitle, selectedImg, selectedStartDate, selectedEndDate, selectedText, selectedName, selectedTarget, selectedUrl, selectedLocation, selectedPayment, selectedId, selectedDonation }) => {
+const Modal = ({ setDonationLocation, donationTitle, donationImg, donationStartDate, donationEndDate, donationText, donationName, donationTarget, donationUrl, donationLocation, donationPayment, donationId, donationDonation }) => {
     const handleDisappear = (e) => {
         if (e.target.classList.contains('backdrop')) {
-            setSelectedLocation(null)
+            setDonationLocation(null)
         }
 
     }
-    console.log(selectedId)
+    console.log(donationId)
 
     const handleNo = async (id) => {
         const response = await fetch(`http://localhost:4008/donations/${id}`, {
@@ -22,7 +22,7 @@ const Modal = ({ setSelectedLocation, selectedTitle, selectedImg, selectedStartD
 
         const response = await fetch(`http://localhost:4004/donations`, {
             method: 'POST',
-            body: JSON.stringify(selectedDonation),
+            body: JSON.stringify(donationDonation),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -45,46 +45,46 @@ const Modal = ({ setSelectedLocation, selectedTitle, selectedImg, selectedStartD
     return (
         <div className={`${styles.backdrop} backdrop`} onClick={handleDisappear}>
             <div className={styles.card}>
-                <p className={styles.title}>{selectedTitle}</p>
+                <p className={styles.title}>{donationTitle}</p>
                 <div className={styles.flex}>
-                    <img src={selectedImg} alt="" className={styles.img} />
-                    <p className={styles.text}>{selectedText}</p>
+                    <img src={donationImg} alt="" className={styles.img} />
+                    <p className={styles.text}>{donationText}</p>
                 </div>
 
                 <div className={styles.info}>
                     <span>name - </span>
-                    {selectedName}
+                    {donationName}
                 </div>
                 <div className={styles.info}>
                     <span>start date - </span>
-                    {selectedStartDate}
+                    {donationStartDate}
                 </div>
                 <div className={styles.info}>
                     <span>end date - </span>
-                    {selectedEndDate}
+                    {donationEndDate}
                 </div>
                 <div className={styles.info}>
                     <span>location - </span>
-                    {selectedLocation}
+                    {donationLocation}
                 </div>
                 <div className={styles.info}>
                     <span>target - </span>
-                    {selectedTarget}
+                    {donationTarget}
                 </div>
                 <div className={styles.info}>
                     <span>payment methods - </span>
-                    {selectedPayment.map((payment) => {
+                    {donationPayment.map((payment) => {
                         return <Payment payment={payment} />
                     })}
                 </div>
                 <div className={styles.flex2}>
-                    <span className={styles.no} onClick={() => handleNo(selectedId)}>No</span>
+                    <span className={styles.no} onClick={() => handleNo(donationId)}>No</span>
                     <button className={styles.button}>
-                        <a href={selectedUrl} target="_blank">
+                        <a href={donationUrl} target="_blank">
                             <span className={styles.btn_text}>donate</span>
                         </a>
                     </button>
-                    <button className={styles.yes} onClick={() => handleYes(selectedId)}>
+                    <button className={styles.yes} onClick={() => handleYes(donationId)}>
                         <span >Yes</span>
                     </button>
 
