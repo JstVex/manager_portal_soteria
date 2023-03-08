@@ -1,6 +1,6 @@
 import styles from "../styles/Card.module.css"
 
-const Donation = ({ donation, setDonationTitle, setDonationImg, setDonationStartDate, setDonationEndDate, setDonationText, setDonationName, setDonationTarget, setDonationUrl, setDonationLocation, setDonationPayment, setDonationId }) => {
+const Donation = ({ donation, setDonationTitle, setDonationImg, setDonationStartDate, setDonationEndDate, setDonationText, setDonationName, setDonationTarget, setDonationUrl, setDonationLocation, setDonationPayment, setDonationId, setNewDonation }) => {
 
     const handleDonationPost = () => {
         setDonationTitle(donation.title);
@@ -13,7 +13,8 @@ const Donation = ({ donation, setDonationTitle, setDonationImg, setDonationStart
         setDonationUrl(donation.url);
         setDonationLocation(donation.location);
         setDonationPayment(donation.payment);
-        setDonationId(donation._id)
+        setDonationId(donation._id);
+        setNewDonation(donation)
     }
 
     return (

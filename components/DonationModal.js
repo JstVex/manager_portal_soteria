@@ -1,7 +1,8 @@
 import styles from "../styles/Modal.module.css"
 import Payment from "./Payment"
 
-const Modal = ({ setDonationLocation, donationTitle, donationImg, donationStartDate, donationEndDate, donationText, donationName, donationTarget, donationUrl, donationLocation, donationPayment, donationId, donationDonation }) => {
+const Modal = ({ handleNo, handleYes, setDonationLocation, donationTitle, donationImg, donationStartDate, donationEndDate, donationText, donationName, donationTarget, donationUrl, donationLocation, donationPayment, donationId }) => {
+
     const handleDisappear = (e) => {
         if (e.target.classList.contains('backdrop')) {
             setDonationLocation(null)
@@ -9,38 +10,6 @@ const Modal = ({ setDonationLocation, donationTitle, donationImg, donationStartD
 
     }
     console.log(donationId)
-
-    const handleNo = async (id) => {
-        const response = await fetch(`http://localhost:4008/donations/${id}`, {
-            method: 'DELETE'
-        })
-        const json = await response.json()
-        console.log(json)
-    }
-
-    const handleYes = async (id) => {
-
-        const response = await fetch(`http://localhost:4004/donations`, {
-            method: 'POST',
-            body: JSON.stringify(donationDonation),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-
-        })
-        const data = await response.json();
-        console.log(data)
-
-        const response2 = await fetch(`http://localhost:4008/donations/${id}`, {
-            method: 'PATCH',
-            body: JSON.stringify({ newPost: false }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        const data2 = await response2.json();
-        console.log(data2)
-    }
 
     return (
         <div className={`${styles.backdrop} backdrop`} onClick={handleDisappear}>
