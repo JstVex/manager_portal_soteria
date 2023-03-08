@@ -1,7 +1,7 @@
 import styles from "../styles/Modal.module.css"
 import Payment from "./Payment"
 
-const CampaignModal = ({ setCampaignPrize, campaignTitle, campaignImg, campaignStartDate, campaignEndDate, campaignText, campaignName, campaignTarget, campaignUrl, campaignPrize, campaignForwhom, campaignPayment, campaignId, campaignCampaign }) => {
+const CampaignModal = ({ handleNo, handleYes, setCampaignPrize, campaignTitle, campaignImg, campaignStartDate, campaignEndDate, campaignText, campaignName, campaignTarget, campaignUrl, campaignPrize, campaignForwhom, campaignPayment, campaignId, campaignCampaign }) => {
 
     const handleDisappear = (e) => {
         if (e.target.classList.contains('backdrop2')) {
@@ -10,38 +10,6 @@ const CampaignModal = ({ setCampaignPrize, campaignTitle, campaignImg, campaignS
 
     }
     console.log(campaignId)
-
-    const handleNo = async (id) => {
-        const response = await fetch(`http://localhost:4008/campaigns/${id}`, {
-            method: 'DELETE'
-        })
-        const json = await response.json()
-        console.log(json)
-    }
-
-    const handleYes = async (id) => {
-
-        const response = await fetch(`http://localhost:4004/campaigns`, {
-            method: 'POST',
-            body: JSON.stringify(campaignCampaign),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-
-        })
-        const data = await response.json();
-        console.log(data)
-
-        const response2 = await fetch(`http://localhost:4008/campaigns/${id}`, {
-            method: 'PATCH',
-            body: JSON.stringify({ newPost: false }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        const data2 = await response2.json();
-        console.log(data2)
-    }
 
     return (
         <div className={`${styles.backdrop} backdrop2`} onClick={handleDisappear}>

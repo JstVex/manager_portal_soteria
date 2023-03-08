@@ -1,6 +1,6 @@
 import styles from "../styles/Card.module.css"
 
-const Campaign = ({ campaign, setCampaignTitle, setCampaignImg, setCampaignStartDate, setCampaignEndDate, setCampaignText, setCampaignName, setCampaignTarget, setCampaignUrl, setCampaignPrize, setCampaignForwhom, setCampaignPayment, setCampaignId }) => {
+const Campaign = ({ campaign, setCampaignTitle, setCampaignImg, setCampaignStartDate, setCampaignEndDate, setCampaignText, setCampaignName, setCampaignTarget, setCampaignUrl, setCampaignPrize, setCampaignForwhom, setCampaignPayment, setCampaignId, setNewCampaign }) => {
 
     const handleCampaignPost = () => {
         setCampaignTitle(campaign.title);
@@ -14,7 +14,8 @@ const Campaign = ({ campaign, setCampaignTitle, setCampaignImg, setCampaignStart
         setCampaignPrize(campaign.prize);
         setCampaignForwhom(campaign.forWhom);
         setCampaignPayment(campaign.payment);
-        setCampaignId(campaign._id)
+        setCampaignId(campaign._id);
+        setNewCampaign(campaign);
     }
 
     return (
