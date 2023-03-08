@@ -1,15 +1,15 @@
 import styles from "../styles/Modal.module.css"
 import Payment from "./Payment"
 
-const ModalCampaign = ({ setSelectedPrize, selectedTitle, selectedImg, selectedStartDate, selectedEndDate, selectedText, selectedName, selectedTarget, selectedUrl, selectedPrize, selectedForwhom, selectedPayment, selectedId, selectedCampaign }) => {
+const CampaignModal = ({ setCampaignPrize, campaignTitle, campaignImg, campaignStartDate, campaignEndDate, campaignText, campaignName, campaignTarget, campaignUrl, campaignPrize, campaignForwhom, campaignPayment, campaignId, campaignCampaign }) => {
 
     const handleDisappear = (e) => {
         if (e.target.classList.contains('backdrop2')) {
-            setSelectedPrize(null);
+            setCampaignPrize(null);
         }
 
     }
-    console.log(selectedId)
+    console.log(campaignId)
 
     const handleNo = async (id) => {
         const response = await fetch(`http://localhost:4008/campaigns/${id}`, {
@@ -23,7 +23,7 @@ const ModalCampaign = ({ setSelectedPrize, selectedTitle, selectedImg, selectedS
 
         const response = await fetch(`http://localhost:4004/campaigns`, {
             method: 'POST',
-            body: JSON.stringify(selectedCampaign),
+            body: JSON.stringify(campaignCampaign),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -46,50 +46,50 @@ const ModalCampaign = ({ setSelectedPrize, selectedTitle, selectedImg, selectedS
     return (
         <div className={`${styles.backdrop} backdrop2`} onClick={handleDisappear}>
             <div className={styles.card}>
-                <p className={styles.title}>{selectedTitle}</p>
+                <p className={styles.title}>{campaignTitle}</p>
                 <div className={styles.flex}>
-                    <img src={selectedImg} alt="" className={styles.img} />
-                    <p className={styles.text}>{selectedText}</p>
+                    <img src={campaignImg} alt="" className={styles.img} />
+                    <p className={styles.text}>{campaignText}</p>
                 </div>
 
                 <div className={styles.info}>
                     <span>name - </span>
-                    {selectedName}
+                    {campaignName}
                 </div>
                 <div className={styles.info}>
                     <span>start date - </span>
-                    {selectedStartDate}
+                    {campaignStartDate}
                 </div>
                 <div className={styles.info}>
                     <span>end date - </span>
-                    {selectedEndDate}
+                    {campaignEndDate}
                 </div>
                 <div className={styles.info}>
                     <span>target - </span>
-                    {selectedTarget}
+                    {campaignTarget}
                 </div>
                 <div className={styles.info}>
                     <span>prize - </span>
-                    {selectedPrize}
+                    {campaignPrize}
                 </div>
                 <div className={styles.info}>
                     <span>for whom - </span>
-                    {selectedForwhom}
+                    {campaignForwhom}
                 </div>
                 <div className={styles.info}>
                     <span>payment methods - </span>
-                    {selectedPayment.map((payment) => {
+                    {campaignPayment.map((payment) => {
                         return <Payment payment={payment} />
                     })}
                 </div>
                 <div className={styles.flex2}>
-                    <span className={styles.no} onClick={() => handleNo(selectedId)}>No</span>
+                    <span className={styles.no} onClick={() => handleNo(campaignId)}>No</span>
                     <button className={styles.button}>
-                        <a href={selectedUrl} target="_blank">
+                        <a href={campaignUrl} target="_blank">
                             <span className={styles.btn_text}>donate</span>
                         </a>
                     </button>
-                    <button className={styles.yes} onClick={() => handleYes(selectedId)}>
+                    <button className={styles.yes} onClick={() => handleYes(campaignId)}>
                         <span >Yes</span>
                     </button>
 
@@ -101,4 +101,4 @@ const ModalCampaign = ({ setSelectedPrize, selectedTitle, selectedImg, selectedS
     );
 }
 
-export default ModalCampaign;
+export default CampaignModal;
