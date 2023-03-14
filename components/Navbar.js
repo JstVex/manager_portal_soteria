@@ -9,7 +9,8 @@ export default function Navbar() {
             <div className="routes">
                 <Link href='/new/donations'>New Donation</Link>
                 <Link href='/new/campaigns'>New Campaign</Link>
-                <Link href='/outdated/donations'>Outdated</Link>
+                <Link href='/outdated/donations'>Outdated Donation</Link>
+                <Link href='/outdated/campaigns'>Outdated Campaign</Link>
             </div>
             <div>
                 Login

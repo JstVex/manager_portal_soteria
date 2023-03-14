@@ -8,9 +8,9 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <Navbar>
-        <div className='title'>
+        <Link href='/' className='title'>
           Manager Portal
-        </div>
+        </Link>
 
         <NavItem text={'New'}>
           <DropdownMenu route={'new'}>
