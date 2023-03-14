@@ -1,10 +1,10 @@
 import styles from "../styles/Modal.module.css"
 import Payment from "./Payment"
 
-const CampaignModal = ({ handleNo, handleYes, setCampaignPrize, campaignTitle, campaignImg, campaignStartDate, campaignEndDate, campaignText, campaignName, campaignTarget, campaignUrl, campaignPrize, campaignForwhom, campaignPayment, campaignId, campaignCampaign }) => {
+const CampaignModal = ({ handleNo, handleYes, setCampaignPrize, campaignTitle, campaignImg, campaignStartDate, campaignEndDate, campaignText, campaignName, campaignTarget, campaignUrl, campaignPrize, campaignForwhom, campaignPayment, campaignId }) => {
 
     const handleDisappear = (e) => {
-        if (e.target.classList.contains('backdrop2')) {
+        if (e.target.classList.contains('backdrop')) {
             setCampaignPrize(null);
         }
 
@@ -12,7 +12,7 @@ const CampaignModal = ({ handleNo, handleYes, setCampaignPrize, campaignTitle, c
     console.log(campaignId)
 
     return (
-        <div className={`${styles.backdrop} backdrop2`} onClick={handleDisappear}>
+        <div className={`${styles.backdrop} backdrop`} onClick={handleDisappear}>
             <div className={styles.card}>
                 <p className={styles.title}>{campaignTitle}</p>
                 <div className={styles.flex}>
