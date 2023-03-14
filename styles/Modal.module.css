@@ -69,16 +69,17 @@
 .button {
     margin: 0 auto;
     background-color: white;
-    color: black;
     border: 1px solid orange;
     padding: 15px;
     transition: all 500ms;
     border-radius: 15px;
+    
 }
 
 .btn_text {
-    font-size: 1rem;
-    font-family: 'Roboto', 'serif';
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    font-size: 0.95rem;
     font-weight: 300;
 }
 
@@ -97,6 +98,7 @@
     padding: 10px 15px;
     border: 1px solid green;
     transition: all 500ms;
+    background-color: white;
 }
 
 .no:hover {
