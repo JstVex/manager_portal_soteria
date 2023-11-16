@@ -4,16 +4,76 @@
   gap: 20px;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 80%;
+  height: calc(100vh - var(--nav-size));
+}
+
 .title {
   text-align: center;
-  font-size: 1.4rem;
-  margin: 50px 0px 10px 0px;
+  font-size: 2.5rem;
+  margin: 50px 0px 20px 0px;
+}
+
+.app {
+  text-decoration: underline orange;
+  text-underline-offset: 5px;
+  color: black;
+}
+
+.text {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin: 5px 0px;
+}
+
+.login {
+  font-size: 1.2rem;
+  width: 80px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 25px auto;
 }
 
 .word {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80vh;
   font-size: 2rem;
+  text-align: center;
+  font-weight: 300;
+  margin: 50px 0px 15px 0px;
 }
+
+.heading {
+  font-size: 2rem;
+  text-align: center;
+  margin: 50px 0px 15px 0px;
+  text-decoration: underline orange;
+  text-underline-offset: 7px;
+}
+
+@media screen and (max-width: 655px) {
+  .wrapper {
+      margin: 0 auto;
+  }
+  
+    .title {
+      font-size: 2.1rem;
+    }
+
+    .text {
+      font-size: 1rem;
+      margin: 5px 0px;
+    }
+
+  .login {
+    font-size: 1rem;
+  }
+}
+
