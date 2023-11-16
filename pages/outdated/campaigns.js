@@ -68,4 +68,4 @@ export async function getStaticProps() {
     return { props: { campaigns } }
 }
 
-export default ProtectedRoute(OutdatedCampaign);
+export default OutdatedCampaign;

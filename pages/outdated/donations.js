@@ -69,4 +69,4 @@ export async function getStaticProps() {
     return { props: { donations } }
 }
 
-export default ProtectedRoute(OutdatedDonations);
+export default OutdatedDonations;
