@@ -63,10 +63,10 @@ const OutdatedDonations = ({ donations }) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const res = await fetch(`http://localhost:4004/donations`)
     const donations = await res.json()
     return { props: { donations } }
 }
 
-export default OutdatedDonations;
+export default ProtectedRoute(OutdatedDonations);

@@ -62,10 +62,10 @@ const OutdatedCampaign = ({ campaigns }) => {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const res = await fetch(`http://localhost:4004/campaigns`)
     const campaigns = await res.json()
     return { props: { campaigns } }
 }
 
-export default OutdatedCampaign;
+export default ProtectedRoute(OutdatedCampaign);
