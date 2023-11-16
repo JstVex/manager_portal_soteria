@@ -2,8 +2,9 @@ import styles from '@/styles/Home.module.css'
 import OutdatedCampaigns from '@/components/OutdatedCampaigns';
 import { useEffect, useState } from 'react';
 import OutdatedCampaignModal from '@/components/OutdatedCampaignModal';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
-export default function OutdatedCampaign({ campaigns }) {
+const OutdatedCampaign = ({ campaigns }) => {
     const [outdatedCampaignList, setOutdatedCampaignList] = useState(campaigns);
     const [outdatedCampaignExist, setOutdatedCampaignExist] = useState(true);
 
@@ -41,13 +42,12 @@ export default function OutdatedCampaign({ campaigns }) {
                 There is no outdated campaign
             </div>}
 
-            {outdatedCampaignList.length > 0 && <div className={styles.title}>
+            {outdatedCampaignList.length > 0 && <div className={styles.heading}>
                 Outdated Campaigns
             </div>}
 
             <div className={styles.content}>
                 {outdatedCampaignList && outdatedCampaignList.map((campaign) => {
-
                     const enddate = campaign.endDate;
                     const enddateDateformat = new Date(enddate)
 
@@ -67,3 +67,5 @@ export async function getStaticProps() {
     const campaigns = await res.json()
     return { props: { campaigns } }
 }
+
+export default ProtectedRoute(OutdatedCampaign);

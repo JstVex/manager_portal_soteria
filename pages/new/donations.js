@@ -2,8 +2,9 @@ import styles from "../../styles/Home.module.css"
 import Donation from "@/components/Donation"
 import DonationModal from "@/components/DonationModal";
 import { useEffect, useState } from "react";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
-export default function NewDonations({ donations }) {
+const NewDonations = ({ donations }) => {
     const [newDonationList, setNewDonationList] = useState(donations);
     const [newDonationExist, setNewDonationExist] = useState(true);
 
@@ -31,7 +32,6 @@ export default function NewDonations({ donations }) {
     }
 
     const handleYes = async (id) => {
-
         const response = await fetch(`http://localhost:4004/donations`, {
             method: 'POST',
             body: JSON.stringify(newDonation),
@@ -62,15 +62,13 @@ export default function NewDonations({ donations }) {
     return (
         <div className={styles.container}>
             {newDonationExist || <div className={styles.word}>
-                There is no new post
+                There is no new donation
             </div>}
 
-
-            {newDonationList.length > 0 && <div className={styles.title}>
+            {newDonationList.length > 0 && <div className={styles.heading}>
                 New Donations
             </div>}
             <div className={styles.content}>
-
                 {newDonationList && newDonationList.map((donation) => {
                     return <Donation donation={donation} key={donation._id} setDonationTitle={setDonationTitle}
                         setDonationImg={setDonationImg} setDonationStartDate={setDonationStartDate} setDonationEndDate={setDonationEndDate} setDonationText={setDonationText} setDonationName={setDonationName} setDonationTarget={setDonationTarget} setDonationUrl={setDonationUrl} setDonationLocation={setDonationLocation} setDonationPayment={setDonationPayment} setDonationId={setDonationId} setNewDonation={setNewDonation} />
@@ -86,3 +84,5 @@ export async function getServerSideProps() {
     const donations = await res.json()
     return { props: { donations } }
 }
+
+export default ProtectedRoute(NewDonations);

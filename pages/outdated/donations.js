@@ -2,8 +2,9 @@ import styles from '@/styles/Home.module.css'
 import OutdatedDonation from '@/components/OutdatedDonation';
 import { useEffect, useState } from 'react';
 import OutdatedModal from '@/components/OutdatedModal';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
-export default function OutdatedDonations({ donations }) {
+const OutdatedDonations = ({ donations }) => {
     const [outdatedDonationList, setOutdatedDonationList] = useState(donations)
     const [outdatedDonation, setOutdatedDonation] = useState(true);
 
@@ -41,7 +42,7 @@ export default function OutdatedDonations({ donations }) {
                 There is no outdated donation
             </div>}
 
-            {donations.length > 0 && <div className={styles.title}>
+            {donations.length > 0 && <div className={styles.heading}>
                 Outdated Donations
             </div>}
 
@@ -67,3 +68,5 @@ export async function getStaticProps() {
     const donations = await res.json()
     return { props: { donations } }
 }
+
+export default ProtectedRoute(OutdatedDonations);

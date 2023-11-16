@@ -2,8 +2,9 @@ import styles from "@/styles/Home.module.css"
 import { useEffect, useState } from "react";
 import CampaignModal from "@/components/CampaignModal";
 import Campaign from "@/components/Campaign";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
-export default function NewCampigns({ campaigns }) {
+const NewCampigns = ({ campaigns }) => {
     const [newCampaignList, setNewCampaignList] = useState(campaigns);
     const [newCampaignExist, setNewCampaignExist] = useState(true);
 
@@ -65,12 +66,11 @@ export default function NewCampigns({ campaigns }) {
                 There is no new campaign
             </div>}
 
-            {newCampaignList.length > 0 && <div className={styles.title}>
+            {newCampaignList.length > 0 && <div className={styles.heading}>
                 New Campaigns
             </div>}
 
             <div className={styles.content}>
-
                 {newCampaignList && newCampaignList.map((campaign) => {
                     return <Campaign campaign={campaign} key={campaign._id} setCampaignTitle={setCampaignTitle}
                         setCampaignImg={setCampaignImg} setCampaignStartDate={setCampaignStartDate} setCampaignEndDate={setCampaignEndDate} setCampaignText={setCampaignText} setCampaignName={setCampaignName} setCampaignTarget={setCampaignTarget} setCampaignUrl={setCampaignUrl} setCampaignPrize={setCampaignPrize} setCampaignForwhom={setCampaignForwhom} setCampaignPayment={setCampaignPayment} setCampaignId={setCampaignId} setNewCampaign={setNewCampaign} />
@@ -86,3 +86,5 @@ export async function getServerSideProps() {
     const campaigns = await res.json()
     return { props: { campaigns } }
 }
+
+export default ProtectedRoute(NewCampigns);
