@@ -1,7 +1,11 @@
 import styles from "../styles/Modal.module.css"
 import Payment from "./Payment"
+import { useContext } from 'react';
+import { AuthContext } from '@/context/AuthContext';
+import toast, { Toaster } from "react-hot-toast";
 
 const CampaignModal = ({ handleNo, handleYes, setCampaignPrize, campaignTitle, campaignImg, campaignStartDate, campaignEndDate, campaignText, campaignName, campaignTarget, campaignUrl, campaignPrize, campaignForwhom, campaignPayment, campaignId }) => {
+    const { user } = useContext(AuthContext);
 
     const handleDisappear = (e) => {
         if (e.target.classList.contains('backdrop')) {
@@ -9,6 +13,25 @@ const CampaignModal = ({ handleNo, handleYes, setCampaignPrize, campaignTitle, c
         }
 
     }
+
+    const noUser = () => toast.error("You don't have permission to do this");
+
+    const handleRefuse = () => {
+        if (user.role === 'admin') {
+            handleNo(donationId)
+        } else {
+            noUser();
+        }
+    }
+
+    const handleApprove = () => {
+        if (user.role === 'admin') {
+            handleYes(donationId)
+        } else {
+            noUser();
+        }
+    }
+
     console.log(campaignId)
 
     return (
@@ -51,21 +74,22 @@ const CampaignModal = ({ handleNo, handleYes, setCampaignPrize, campaignTitle, c
                     })}
                 </div>
                 <div className={styles.flex2}>
-                    <span className={styles.no} onClick={() => handleNo(campaignId)}>No</span>
+                    <span className={styles.no} onClick={handleRefuse}>Refuse</span>
                     <button className={styles.button}>
                         <a href={campaignUrl} target="_blank">
-                            <span className={styles.btn_text}>donate</span>
+                            <span className={styles.btn_text}>Link</span>
                         </a>
                     </button>
-                    <button className={styles.yes} onClick={() => handleYes(campaignId)}>
-                        <span >Yes</span>
+                    <button className={styles.yes} onClick={handleApprove}>
+                        <span>Approve</span>
                     </button>
-
                 </div>
-
             </div>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         </div>
-
     );
 }
 

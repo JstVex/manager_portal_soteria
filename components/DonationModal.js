@@ -1,14 +1,36 @@
 import styles from "../styles/Modal.module.css"
 import Payment from "./Payment"
+import { useContext } from 'react';
+import { AuthContext } from '@/context/AuthContext';
+import toast, { Toaster } from "react-hot-toast";
 
 const Modal = ({ handleNo, handleYes, setDonationLocation, donationTitle, donationImg, donationStartDate, donationEndDate, donationText, donationName, donationTarget, donationUrl, donationLocation, donationPayment, donationId }) => {
+    const { user } = useContext(AuthContext);
 
     const handleDisappear = (e) => {
         if (e.target.classList.contains('backdrop')) {
             setDonationLocation(null)
         }
-
     }
+
+    const noUser = () => toast.error("You don't have permission to do this");
+
+    const handleRefuse = () => {
+        if (user.role === 'admin') {
+            handleNo(donationId)
+        } else {
+            noUser();
+        }
+    }
+
+    const handleApprove = () => {
+        if (user.role === 'admin') {
+            handleYes(donationId)
+        } else {
+            noUser();
+        }
+    }
+
     console.log(donationId)
 
     return (
@@ -47,19 +69,21 @@ const Modal = ({ handleNo, handleYes, setDonationLocation, donationTitle, donati
                     })}
                 </div>
                 <div className={styles.flex2}>
-                    <span className={styles.no} onClick={() => handleNo(donationId)}>No</span>
+                    <span className={styles.no} onClick={handleRefuse}>Refuse</span>
                     <button className={styles.button}>
                         <a href={donationUrl} target="_blank">
-                            <span className={styles.btn_text}>donate</span>
+                            <span className={styles.btn_text}>Link</span>
                         </a>
                     </button>
-                    <button className={styles.yes} onClick={() => handleYes(donationId)}>
-                        <span >Yes</span>
+                    <button className={styles.yes} onClick={handleApprove}>
+                        <span>Approve</span>
                     </button>
-
                 </div>
-
             </div>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         </div>
 
     );

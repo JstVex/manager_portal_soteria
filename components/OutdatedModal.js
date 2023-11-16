@@ -1,13 +1,27 @@
 import styles from "@/styles/Modal.module.css"
 import Payment from "./Payment"
+import { useContext } from 'react';
+import { AuthContext } from '@/context/AuthContext';
+import toast, { Toaster } from "react-hot-toast";
 
 export default function OutdatedModal({ handleOutdatedDonationDelete, setOutdatedDonationTitle, outdatedDonationTitle, outdatedDonationImg, outdatedDonationStartDate, outdatedDonationEndDate, outdatedDonationText, outdatedDonationName, outdatedDonationTarget, outdatedDonationUrl, outdatedDonationLocation, outdatedDonationPayment, outdatedDonationId }) {
+    const { user } = useContext(AuthContext);
 
     const handleDisappear = (e) => {
         if (e.target.classList.contains('backdrop')) {
             setOutdatedDonationTitle(null)
         }
     }
+    const noUser = () => toast.error("You don't have permission to do this");
+
+    const handleDelete = () => {
+        if (user.role === 'admin') {
+            handleOutdatedDonationDelete(outdatedDonationId)
+        } else {
+            noUser();
+        }
+    }
+
 
     return (
         <div className={`${styles.backdrop} backdrop`} onClick={handleDisappear}>
@@ -50,16 +64,13 @@ export default function OutdatedModal({ handleOutdatedDonationDelete, setOutdate
                     </a>
                 </div>
                 <div className={styles.flex2}>
-                    <span className={styles.no} onClick={() => handleOutdatedDonationDelete(outdatedDonationId)}>Delete</span>
-                    {/* <button className={styles.button}>
-                        <a href={outdatedDonationUrl} target="_blank">
-                            <span className={styles.btn_text}>donate</span>
-                        </a>
-                    </button> */}
-
+                    <span className={styles.no} onClick={handleDelete}>Delete</span>
                 </div>
-
             </div>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         </div>
 
     )

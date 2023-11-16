@@ -1,11 +1,25 @@
 import styles from "@/styles/Modal.module.css"
 import Payment from "./Payment"
+import { useContext } from 'react';
+import { AuthContext } from '@/context/AuthContext';
+import toast, { Toaster } from "react-hot-toast";
 
 export default function OutdatedCampaignModal({ handleOutdatedCampaignDelete, setOutdatedCampaignPrize, outdatedCampaignTitle, outdatedCampaignImg, outdatedCampaignStartDate, outdatedCampaignEndDate, outdatedCampaignText, outdatedCampaignName, outdatedCampaignTarget, outdatedCampaignUrl, outdatedCampaignPrize, outdatedCampaignForwhom, outdatedCampaignPayment, outdatedCampaignId }) {
+    const { user } = useContext(AuthContext);
 
     const handleDisappear = (e) => {
         if (e.target.classList.contains('backdrop')) {
             setOutdatedCampaignPrize(null)
+        }
+    }
+
+    const noUser = () => toast.error("You don't have permission to do this");
+
+    const handleDelete = () => {
+        if (user.role === 'admin') {
+            handleOutdatedCampaignDelete(outdatedCampaignId)
+        } else {
+            noUser();
         }
     }
 
@@ -54,11 +68,13 @@ export default function OutdatedCampaignModal({ handleOutdatedCampaignDelete, se
                     </a>
                 </div>
                 <div className={styles.flex2}>
-                    <span className={styles.no} onClick={() => handleOutdatedCampaignDelete(outdatedCampaignId)}>Delete</span>
-
+                    <span className={styles.no} onClick={handleDelete}>Delete</span>
                 </div>
-
             </div>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         </div>
     )
 }
