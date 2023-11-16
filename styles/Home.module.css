@@ -38,8 +38,19 @@
   background-color: orange;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: 25px;
+  padding: 7px;
+  margin: 25px auto;
+}
+
+.btn {
+  font-size: 1.2rem;
+  width: 180px;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 7px;
   margin: 25px auto;
 }
 
